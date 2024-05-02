@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "spotifycrackeado"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pygame = "^2.5.0"
+tk = "^0.1.0"
+customtkinter = "^5.2.0"
+pillow = "^10.0.0"
+mutagen = "^1.46.0"
+youtube-dl = "^2021.12.17"
+pytube = "^15.0.0"
+pywebio = "^1.8.2"
+moviepy = "^1.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

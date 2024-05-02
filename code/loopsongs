@@ -1,0 +1,67 @@
+import os
+import tkinter as tk
+from tkinter import filedialog
+import pygame
+
+class MusicPlayer:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Music Player")
+        
+        pygame.init()
+        pygame.mixer.init()
+        
+        self.playlist = []
+        self.current_track = 0
+        
+        self.create_widgets()
+    
+    def create_widgets(self):
+        self.playlist_box = tk.Listbox(self.root, selectmode=tk.SINGLE)
+        self.playlist_box.pack(fill=tk.BOTH, expand=True)
+        
+        self.add_button = tk.Button(self.root, text="Add Songs", command=self.add_songs)
+        self.add_button.pack()
+        
+        self.play_button = tk.Button(self.root, text="Play", command=self.play_music)
+        self.play_button.pack()
+        
+        self.loop_var = tk.IntVar()
+        self.loop_checkbox = tk.Checkbutton(self.root, text="Loop", variable=self.loop_var)
+        self.loop_checkbox.pack()
+        
+        self.root.protocol("WM_DELETE_WINDOW", self.cleanup)
+    
+    def add_songs(self):
+        files = filedialog.askopenfilenames(filetypes=[("Audio Files", "*.mp3")])
+        for file in files:
+            self.playlist.append(file)
+            self.playlist_box.insert(tk.END, os.path.basename(file))
+    
+    def play_music(self):
+        if not self.playlist:
+            return
+        
+        pygame.mixer.music.load(self.playlist[self.current_track])
+        pygame.mixer.music.play()
+
+        if self.loop_var.get():
+            pygame.mixer.music.set_endevent(pygame.USEREVENT)
+            pygame.mixer.music.set_endevent(pygame.USEREVENT)
+
+        self.root.after(100, self.check_music_end)
+
+    def check_music_end(self):
+        if pygame.mixer.music.get_endevent() == pygame.USEREVENT:
+            self.current_track = (self.current_track + 1) % len(self.playlist)
+            self.play_music()
+    
+    def cleanup(self):
+        pygame.mixer.music.stop()
+        pygame.quit()
+        self.root.destroy()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = MusicPlayer(root)
+    root.mainloop()
