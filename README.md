@@ -1,12 +1,4 @@
-<div align="center">
-  <img src="https://github.com/powerandcontrol/MP4-em-Python/blob/main/mp4_em_python_header.gif" alt="Header">
-</div>
 
-<div align="center">
-   <img src="https://github.com/powerandcontrol/MP4-em-Python/blob/main/icon_mp4_em_python.gif" alt="Icon" width=80>
-</div>
-
-<div align="center">
 
 # 🎵 MP4 em Python 🎶
 
