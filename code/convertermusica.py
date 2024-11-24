@@ -16,7 +16,7 @@ def download_music():
                     'preferredcodec': 'mp3',
                     'preferredquality': '192',
                 }],
-                'ffmpeg_location': r'C:\Users\thale\OneDrive\Documentos\ffmpeg\ffmpeg-master-latest-win64-gpl-shared\bin',
+                'ffmpeg_location': r'_Caminho_para_o_executável_do_FFmpeg_',
             }
             #Fazer o dowload
 
